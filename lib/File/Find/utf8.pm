@@ -4,7 +4,7 @@ use warnings;
 use 5.010; # state
 
 # ABSTRACT: Fully UTF-8 aware File::Find
-our $VERSION = '0.001'; # VERSION
+our $VERSION = '0.002'; # VERSION
 
 
 use File::Find qw();
@@ -30,9 +30,9 @@ sub import {
     no strict qw(refs); ## no critic (TestingAndDebugging::ProhibitNoStrict)
     no warnings qw(redefine);
 
-    # If run on the dos/os2/windows platform, ignore overriding functions silently.
+    # If run on the DOS or OS/2 platform, ignore overriding functions silently.
     # These platforms do not (properly) suppport utf-8 filenames...
-    unless ($^O eq 'Win32' or $^O eq 'dos' or $^O eq 'os2') {
+    unless ($^O eq 'dos' or $^O eq 'os2') {
         no strict qw(refs); ## no critic (TestingAndDebugging::ProhibitNoStrict)
         no warnings qw(redefine);
 
@@ -118,7 +118,7 @@ sub _utf8_find {
     if (!warnings::enabled('File::Find')) {
         no warnings 'File::Find';
         return $_orig_functions{find}->(\%find_options_hash, @args);
-    } elsif (!warnings::fatal_enabled('File::Find')) {
+    } elsif (!exists &warnings::fatal_enabled or !warnings::fatal_enabled('File::Find')) {
         use warnings 'File::Find';
         return $_orig_functions{find}->(\%find_options_hash, map { encode('UTF-8', $_) } @_);
     } else {
@@ -146,7 +146,7 @@ File::Find::utf8 - Fully UTF-8 aware File::Find
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -175,7 +175,7 @@ characters.
 This module replaces the L<File::Find> functions with fully UTF-8
 aware versions, both expecting and returning characters.
 
-B<Note:> Replacement of functions is not done on Win32, DOS, and OS/2
+B<Note:> Replacement of functions is not done on DOS and OS/2
 as these systems do not have full UTF-8 file system support.
 
 =head2 Behaviour
@@ -188,6 +188,10 @@ By default, both find() and finddepth() are exported (as with the original
 L<File::Find>), if you want to prevent this, use C<use File::Find::utf8
 qw(:none)>. (As all the magic happens in the module's import function,
 you can not simply use C<use File::Find::utf8 qw()>)
+
+L<File::Find> warning levels are properly propagated. Note though that
+for propagation of fatal L<File::Find> warnings, Perl 5.12 or higher
+is required (or the appropriate version of L<warnings>).
 
 =for test_synopsis my @directories_to_search;
 
