@@ -4,7 +4,7 @@ use warnings;
 use 5.010; # state
 
 # ABSTRACT: Fully UTF-8 aware File::Find
-our $VERSION = '0.002'; # VERSION
+our $VERSION = '0.003'; # VERSION
 
 
 use File::Find qw();
@@ -146,7 +146,7 @@ File::Find::utf8 - Fully UTF-8 aware File::Find
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 

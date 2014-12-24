@@ -72,12 +72,13 @@
       "bugtracker" : {
          "web" : "https://github.com/HayoBaan/File-Find-utf8/issues"
       },
+      "homepage" : "http://metacpan.org/release/File-Find-utf8/",
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/HayoBaan/File-Find-utf8.git",
          "web" : "https://github.com/HayoBaan/File-Find-utf8"
       }
    },
-   "version" : "0.002"
+   "version" : "0.003"
 }
 
