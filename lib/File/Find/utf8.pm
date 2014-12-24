@@ -4,7 +4,7 @@ use warnings;
 use 5.010; # state
 
 # ABSTRACT: Fully UTF-8 aware File::Find
-our $VERSION = '0.003'; # VERSION
+our $VERSION = '0.004'; # VERSION
 
 
 use File::Find qw();
@@ -16,9 +16,6 @@ my @EXPORT_OK = ();
 # Holds the pointers to the original version of redefined functions
 state %_orig_functions;
 
-# Target package (i.e., the one loading this module)
-my $target_package = caller;
-
 # Current package
 my $current_package = __PACKAGE__;
 
@@ -27,6 +24,9 @@ my $original_package = $current_package;
 $original_package =~ s/::utf8$//;
 
 sub import {
+    # Target package (i.e., the one loading this module)
+    my $target_package = caller;
+
     no strict qw(refs); ## no critic (TestingAndDebugging::ProhibitNoStrict)
     no warnings qw(redefine);
 
@@ -146,7 +146,7 @@ File::Find::utf8 - Fully UTF-8 aware File::Find
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 

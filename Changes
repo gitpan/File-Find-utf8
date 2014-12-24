@@ -1,5 +1,8 @@
 Revision history for Perl module File-Find-utf8
 
+0.004     2014-12-24
+  - Corrected determination of target
+
 0.003     2014-12-24
   - Rewrote warning level tests to also fail when run as admin
     The test should now work well on all systems/circumstances

@@ -35,4 +35,4 @@ resources:
   bugtracker: https://github.com/HayoBaan/File-Find-utf8/issues
   homepage: http://metacpan.org/release/File-Find-utf8/
   repository: git://github.com/HayoBaan/File-Find-utf8.git
-version: '0.003'
+version: '0.004'
