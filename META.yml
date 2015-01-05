@@ -3,12 +3,14 @@ abstract: 'Fully UTF-8 aware File::Find'
 author:
   - 'Hayo Baan <info@hayobaan.nl>'
 build_requires:
+  File::Path: '0'
   File::Spec: '0'
   IO::Handle: '0'
   IPC::Open3: '0'
   Module::Build: '0.28'
   Test::More: '0.96'
   Test::Warn: '0'
+  open: '0'
   perl: '5.010'
 configure_requires:
   ExtUtils::MakeMaker: '0'
@@ -23,7 +25,11 @@ meta-spec:
 name: File-Find-utf8
 no_index:
   directory:
-    - test_files
+    - corpus
+provides:
+  File::Find::utf8:
+    file: lib/File/Find/utf8.pm
+    version: '0.005'
 requires:
   Carp: '0'
   Encode: '0'
@@ -35,4 +41,4 @@ resources:
   bugtracker: https://github.com/HayoBaan/File-Find-utf8/issues
   homepage: http://metacpan.org/release/File-Find-utf8/
   repository: git://github.com/HayoBaan/File-Find-utf8.git
-version: '0.004'
+version: '0.005'

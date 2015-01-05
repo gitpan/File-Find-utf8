@@ -15,7 +15,7 @@
    "name" : "File-Find-utf8",
    "no_index" : {
       "directory" : [
-         "test_files"
+         "corpus"
       ]
    },
    "prereqs" : {
@@ -58,13 +58,21 @@
       },
       "test" : {
          "requires" : {
+            "File::Path" : "0",
             "File::Spec" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
             "Test::More" : "0.96",
             "Test::Warn" : "0",
+            "open" : "0",
             "perl" : "5.010"
          }
+      }
+   },
+   "provides" : {
+      "File::Find::utf8" : {
+         "file" : "lib/File/Find/utf8.pm",
+         "version" : "0.005"
       }
    },
    "release_status" : "stable",
@@ -79,6 +87,6 @@
          "web" : "https://github.com/HayoBaan/File-Find-utf8"
       }
    },
-   "version" : "0.004"
+   "version" : "0.005"
 }
 
